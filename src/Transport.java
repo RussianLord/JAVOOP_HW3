@@ -1,92 +1,62 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 public class Transport {
-    private String brand, model;
-    private double price;
-    private List<String> brands = new ArrayList<>();
-    private List<String> models = new ArrayList<>();
-    private Map<String,List<String>> modelsCars = new HashMap<>();
-    private List<String> modelsBus = new ArrayList<>();
+    public static Random random = new Random();
 
-    public List<String> getBrands() {
-        brands.add("MAN");
-        brands.add("Porche");
-        brands.add("Ford");
-        brands.add("Hyunda");
-        brands.add("Lincoln");
-        return brands;
+    public static List<String> list = new ArrayList<>();
+    private int wheelsCount;
+    private int countPassenger;
+    private double engineValue;
+    private String typeEngine;
+
+    public Transport(int wheelsCount, int countPassenger, double engineValue, String typeEngine) {
+        this.wheelsCount = wheelsCount;
+        this.countPassenger = countPassenger;
+        this.engineValue = engineValue;
+        this.typeEngine = typeEngine;
     }
 
-    public Map<String, List<String>> getModelsCars() {
-        for (int i = 0; i < brands.size(); i++) {
-            if(brands.get(i).equals("Porche")) {
-                models.removeAll(models);
-                models.add("911 GT");
-                models.add("Panamera");
-                models.add("Cayman");
-                modelsCars.put(brands.get(i),models); }
-            else if (brands.get(i).equals("Ford")) {
-                models.removeAll(models);
-                models.add("Focus");
-                models.add("Fiesta");
-                models.add("Patrol");
-                modelsCars.put(brands.get(i),models);}
-            else if (brands.get(i).equals("Hyunda")) {
-                models.removeAll(models);
-                models.add("T150");
-                models.add("B112");
-                models.add("BusSeria");
-                modelsCars.put(brands.get(i),models);}
-            else if (brands.get(i).equals("MAN")) {
-                models.removeAll(models);
-                models.add("Cargo");
-                models.add("BigTruck");
-                modelsCars.put(brands.get(i),models);}
-            else if (brands.get(i).equals("Lincoln")) {
-                models.removeAll(models);
-                models.add("Classic s50");
-                models.add("R15");
-                modelsCars.put(brands.get(i),models);}
-
-
-        }
-        return modelsCars;
+    public String getInfo() {
+        return "Вместимость пассажиров: " + countPassenger + ". Тип двигателя: " + typeEngine + ". Объём двигателя: " + engineValue + ". Количество колёс: " + wheelsCount+ ". \n";
     }
 
-    public Transport(String brand, String model, double price) {
-        this.brand = brand;
-        this.model = model;
-        this.price = price;
+    public static int getWheelsCount(){
+        int wheels = 4;
+        return wheels;
     }
 
-    public String getBrand() {
-        return brand;
+    public void setWheelsCount(int wheelsCount) {
+        this.wheelsCount = wheelsCount;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public static int getCountPassenger() {
+        int maxPas = 7;
+        int minPas = 2;
+        return random.nextInt(maxPas-minPas)+minPas;
     }
 
-    public String getModel() {
-        return model;
+    public void setCountPassenger(int countPassenger) {
+        this.countPassenger = countPassenger;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    static double getEngineValue(){
+        double[] list = new double[]{1.6,2.0,3.2,4.0,6.4};
+        return list[random.nextInt(list.length)];
     }
 
-    public double getPrice() {
-        return price;
+    public void setEngineValue(double engineValue) {
+        this.engineValue = engineValue;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    static String getTypeEngine(){
+        list = Arrays.asList("Бензин", "Дизель", "Элеткро");
+        return list.get(random.nextInt(list.size()));
     }
 
-    public String getTransport() {
-        return "Бренд: " + brand + ". Модель: " + model + ". Цена: " + price + "руб.";
+    public void setTypeEngine(String typeEngine) {
+        this.typeEngine = typeEngine;
     }
 }

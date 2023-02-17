@@ -1,43 +1,56 @@
-public class Auto extends Transport {
-    private String typeEngine;
-    private int power;
-    private double engineValue;
+import java.util.Arrays;
+import java.util.List;
 
-    public Auto(String brand, String model, double price, String typeEngine, int power, double engineValue) {
-        super(brand, model, price);
-        this.typeEngine = typeEngine;
-        this.power = power;
-        this.engineValue = engineValue;
+public class Auto extends Transport{
+
+    private  String brand;
+    private  String model;
+    private  String color;
+    private double price;
+
+    public Auto(int wheelsCount, int countPassenger, double engineValue, String typeEngine, String brand, String model, String color, double price) {
+        super(wheelsCount, countPassenger, engineValue, typeEngine);
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+        this.price = price;
+    }
+    public String getInfo(){
+        return "Марка: "+brand+". Модель: "+model+". Цвет кузова: "+color+". Цена: $"+price + ". \n" + super.getInfo();
     }
 
-
-    public String getTypeEngine() {
-        return typeEngine;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setTypeEngine(String typeEngine) {
-        this.typeEngine = typeEngine;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public int getPower() {
-        return power;
+    public String getModel() {
+        return model;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public double getEngineValue() {
-        return engineValue;
+    static String getColor() {
+        list = Arrays.asList("Чёрный", "Красный", "Жёлтый", "Зелёный", "Белый");
+        return list.get(random.nextInt(list.size()));
     }
 
-    public void setEngineValue(double engineValue) {
-        this.engineValue = engineValue;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getAuto() {
-        return super.getTransport() + "Тип двигателя: " + typeEngine + ". Объём двигателя: " + engineValue + ". Мощность: " + power + "л.с.";
+    static double getPrice() {
+        int max = 10001;
+        int min = 1000;
+        return random.nextInt(max-min)+min;
     }
 
-
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
