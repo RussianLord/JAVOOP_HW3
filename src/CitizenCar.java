@@ -11,7 +11,7 @@ public class CitizenCar extends CarType{
     }
 
     static String getNameAudioSystem() {
-        list = Arrays.asList("Harmak/Kardon","Bose","Bang & Olufsen");
+        list = Arrays.asList("Harman/Kardon","Bose","Bang & Olufsen");
         return list.get(random.nextInt(list.size()));
     }
 
